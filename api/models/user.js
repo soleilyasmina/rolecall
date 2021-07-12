@@ -4,6 +4,8 @@ const { hashSync } = require("bcrypt");
 const { SALT_ROUNDS } = process.env;
 const salts = parseInt(SALT_ROUNDS, 10);
 
+const profileOptions = ["newest-found", "recent", "newest-archived", "featured", "newest-applied", "stale"];
+
 const userSchema = new Schema({
   username: {
     type: String,
@@ -21,6 +23,11 @@ const userSchema = new Schema({
       message: "Email validation failed!",
     },
   },
+  profile: [{
+    type: String,
+    default: [],
+    enum: profileOptions,
+  }],
 }, {
   timestamps: true,
 });
@@ -31,11 +38,13 @@ userSchema.pre("save", function hash(next) {
   return next();
 });
 
-userSchema.pre("findOneAndUpdate", async function hash() {
+userSchema.pre("findOneAndUpdate", async function hash(next) {
   const doc = await this.model.findOne(this.getQuery());
+  if (!this._update) return next();
   if (this._update.password_digest && doc.password_digest !== this._update.password_digest) {
     this._update.password_digest = hashSync(this._update.password_digest, salts);
   }
+  return next();
 });
 
 module.exports = model("users", userSchema);

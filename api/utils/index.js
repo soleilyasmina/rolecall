@@ -28,7 +28,7 @@ const restrict = async (req, res, next) => {
       res.locals.user = user;
       next();
     } else {
-      res.status(401).json({ error: "Not authorized!" });
+      throw new Error();
     }
   } catch (e) {
     res.status(401).json({ error: "Not authorized!" });
