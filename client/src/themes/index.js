@@ -1,9 +1,15 @@
-import { createTheme } from "@material-ui/core/styles";
+import { Grommet } from "grommet";
 
-const theme = createTheme({
-  typography: {
-    fontFamily: "Montserrat, Roboto, sans-serif, -apple-system",
-  },
-});
+const theme = {
+  global: {
+    font: {
+      family: "Montserrat"
+    }
+  }
+};
 
-export default theme;
+const ThemeProvider = ({ children }) => (
+  <Grommet theme={theme}>{children}</Grommet>
+);
+
+export default ThemeProvider;

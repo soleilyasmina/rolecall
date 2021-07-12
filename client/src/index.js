@@ -1,17 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ThemeProvider } from "@material-ui/core/styles";
-import "./index.css";
 import App from "./App";
 import { Provider } from "./context";
-import theme from "./themes";
+import ThemeProvider from "./themes";
 import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider>
         <Provider>
           <App />
         </Provider>

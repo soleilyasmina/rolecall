@@ -1,9 +1,22 @@
-import "./App.css";
+import { Route } from "react-router-dom";
+import { Main } from "grommet";
+import Nav from "components/Nav";
 
 function App() {
   return (
-    <div className="App">
-    </div>
+    <Main pad="small">
+      <Nav />
+      <Route exact path="/">
+      </Route>
+      <Route path="/dashboard">
+      </Route>
+      <Route path="/new">
+      </Route>
+      <Route path="/login">
+      </Route>
+      <Route path="/register">
+      </Route>
+    </Main>
   );
 }
 
