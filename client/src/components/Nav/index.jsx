@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
-import { Header, Menu } from "grommet";
+import { Header, Heading, Menu } from "grommet";
 import { Menu as MenuIcon } from "grommet-icons";
 import { Context } from "context";
 
@@ -11,7 +11,7 @@ const Nav = () => {
   return (
     <Header>
       <Link to="/">
-        <h1>RoleCall</h1>
+        <Heading>RoleCall</Heading>
       </Link>
       <Menu
         items={
