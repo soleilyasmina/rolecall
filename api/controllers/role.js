@@ -26,8 +26,9 @@ const createRole = async (req, res) => {
   try {
     const role = await Role.create({
       ...req.body,
+      user_id: res.locals.user.id,
     });
-    await role.save();
+
     res.status(201).json(role);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -35,16 +36,16 @@ const createRole = async (req, res) => {
 };
 
 const updateRole = async (req, res) => {
-  try {
-    const { id } = req.params;
-    await Role.findByIdAndUpdate(id, ...req.body);
+  const { id } = req.params;
+  await User.findByIdAndUpdate(id, req.body, { new: true }, (error, role) => {
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
     if (!role) {
       return res.status(404).json({ message: 'Cannot find this role' });
     }
     res.status(200).json(role);
-  } catch (e) {
-    res.status(500).json({ error: e.message });
-  }
+  });
 };
 
 const deleteRole = async (req, res) => {
