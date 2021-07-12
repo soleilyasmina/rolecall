@@ -14,7 +14,13 @@
   "author": "Soleil Solomon <mounlasolomon@gmail.com> and Zulay Scottborgh <zulay@lifefromabackapack.com>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^10.0.0",
     "mongoose": "^5.13.2"
+  },
+  "devDependencies": {
+    "eslint": "7.2.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "2.22.1"
   }
 }
