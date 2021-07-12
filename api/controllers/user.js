@@ -1,9 +1,16 @@
 const User = require("../models/user");
-const { createToken, extractUserPayload } = require("../utils");
+const { createToken, extractUserPayload, comparePasswords } = require("../utils");
 
 const login = async (req, res) => {
   try {
-    res.status(200).json({ message: "Nothing here yet!" });
+    const [user] = await User.find({ username: req.body.username });
+    if (comparePasswords(req.body.password, user.password_digest)) {
+      const userInfo = extractUserPayload(user);
+      const token = createToken(userInfo);
+      res.status(201).json({ user: userInfo, token });
+    } else {
+      res.status(401).json({ error: "Not authorized" });
+    }
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

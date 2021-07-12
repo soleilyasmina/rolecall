@@ -1,3 +1,4 @@
+const { compareSync } = require("bcrypt");
 const { sign, verify } = require("jsonwebtoken");
 
 const { SECRET } = process.env;
@@ -15,8 +16,11 @@ const extractUserPayload = (user) => {
   };
 };
 
+const comparePasswords = (password, userPassword) => compareSync(password, userPassword);
+
 module.exports = {
   createToken,
   extractUserPayload,
   verifyToken,
+  comparePasswords,
 };
