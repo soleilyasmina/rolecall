@@ -28,7 +28,7 @@ const roleSchema = new Schema(
             ],
             message: '{VALUE} is not supported',
           },
-          when: Date,
+          when: String,
           required: true,
         },
       },
