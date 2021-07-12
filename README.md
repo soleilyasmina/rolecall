@@ -14,11 +14,11 @@ A MERN stack application to keep track of, analyze, and apply for positions.
   username: String,
   password_digest: String,
   email: String,
-  jobs: Job[],
+  roles: Role[],
   profile: Array[Enum["newest-found", "recent", "newest-archived", "featured", "newest-applied", "stale"]]
 }
 
-// Job
+// Role
 {
   user_id: User, 
   position: String,

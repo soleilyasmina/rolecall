@@ -4,7 +4,7 @@ Describe the big picture of your changes here to communicate to the maintainers 
 
 ## Types of Changes
 
-What types of changes does your code introduce to GAIA?
+What types of changes does your code introduce to RoleCall?
 _Put an `x` in the boxes that apply:_
 
 - [ ] bugfix (non-breaking change which fixes an issue)
@@ -22,5 +22,4 @@ _Put an `x` in the boxes that apply. If you're unsure about any of them, don't h
 
 ## Anything else?
 
-If there are any suggestions, necessary resources, or anything else, please add them here!
 
