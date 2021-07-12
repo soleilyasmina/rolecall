@@ -29,7 +29,8 @@ const register = async (req, res) => {
 
 const verify = async (req, res) => {
   try {
-    res.status(200).json({ message: "Nothing here yet!" });
+    const userInfo = extractUserPayload(res.locals.user);
+    res.status(200).json({ user: userInfo });
   } catch (e) {
     res.status(500).json({ error: e.message });
   }

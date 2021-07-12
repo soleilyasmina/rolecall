@@ -21,6 +21,8 @@ const userSchema = new Schema({
       message: "Email validation failed!",
     },
   },
+}, {
+  timestamps: true,
 });
 
 userSchema.pre("save", function hash(next) {
