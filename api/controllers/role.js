@@ -37,7 +37,7 @@ const createRole = async (req, res) => {
 
 const updateRole = async (req, res) => {
   const { id } = req.params;
-  await User.findByIdAndUpdate(id, req.body, { new: true }, (error, role) => {
+  await Role.findByIdAndUpdate(id, req.body, { new: true }, (error, role) => {
     if (error) {
       return res.status(500).json({ error: error.message });
     }
