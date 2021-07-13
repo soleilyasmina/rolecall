@@ -9,7 +9,7 @@ import { scrubFalsyPairs } from "utils";
 const RoleForm = ({ handleSubmit, initialForm = null }) => {
   const { roles } = useContext(Context);
 
-  const [form, setForm] = useState(initialForm || {
+  const [form, setForm] = useState({
     position: "",
     company: "",
     link: "",
@@ -25,7 +25,9 @@ const RoleForm = ({ handleSubmit, initialForm = null }) => {
   });
 
   useEffect(() => {
-    setForm(initialForm);
+    if (initialForm) {
+      setForm(initialForm);
+    }
   }, [initialForm]);
 
   const suggestions = useMemo(() => {
