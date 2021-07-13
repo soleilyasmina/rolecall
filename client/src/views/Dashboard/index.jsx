@@ -1,33 +1,24 @@
-import { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useContext } from 'react';
 import { Context } from 'context';
-import { getRoles } from 'services';
-import { newestFound } from 'utils';
-import Card from 'components/Card';
+import { getRolesFromProfiles } from 'utils';
 import Section from 'components/Section';
 import { Box } from 'grommet';
 
 const Dashboard = ({ role }) => {
   const { roles, user } = useContext(Context);
-  console.log(roles);
-  console.log(user);
+  if (!user) {
+    return null;
+  }
 
-  // login / verify -- conditional to guard or guard routes to prevent non-users from viewing pages
-  // pull user id
-  // access user profile
-  // filter through to sort roles for respective space
-  // map through roles from user profile to display cards
-  //
+  const rolesFromProfiles = getRolesFromProfiles(user, roles);
+
   return (
-    <>
-      <Box
-        direction="column"
-        border={{ color: 'neutral-3', size: 'large' }}
-        pad="small"
-      >
-        <Section />
-      </Box>
-    </>
+    <Box
+      direction="column"
+      pad="small"
+    >
+      {rolesFromProfiles.map((profileRoles, i) => <Section key={`section-${i}`} roles={profileRoles} profile={user.profile[i]}/>)}
+    </Box>
   );
 };
 

@@ -1,18 +1,21 @@
-import { Box } from 'grommet';
-const Section = () => {
+import { Box, Heading } from 'grommet';
+import Card from "components/Card";
+
+const Section = (props) => {
+  const { profile, roles } = props;
   return (
-    <>
+    <Box>
+      <Heading textAlign="center">{profile}</Heading>
       <Box
+        border={{ color: 'light-5', size: 'medium' }}
         direction="row"
-        border={{ color: 'accent-2', size: 'medium' }}
         pad="medium"
         margin="small"
-        // overflow="scroll"
+        overflow="scroll"
       >
-        <h1>filter order: featured</h1>
-        <h2>role Map</h2>
+        {roles.map((role) => <Card key={`${profile}-${role._id}`} role={role} />)}
       </Box>
-    </>
+    </Box>
   );
 };
 

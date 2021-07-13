@@ -9,26 +9,27 @@ export const Provider = ({ children }) => {
   const [roles, setRoles] = useState([]);
   const [user, setUser] = useState(null);
 
-  const contextValue = {
-    roles,
-    setRoles,
-    setUser,
-    user
-  };
-
   useEffect(() => {
     const token = getToken();
     if (token) {
       (async () => {
         setUser(await verify(token));
-        setRoles(await getRoles());
-      })()
-    } 
-  }, [])
+        await fetchRoles();
+      })();
+    }
+  }, []);
 
-  return (
-    <Context.Provider value={contextValue}>
-      {children}
-    </Context.Provider>
-  );
+  const fetchRoles = async () => {
+    setRoles(await getRoles());
+  };
+
+  const contextValue = {
+    fetchRoles,
+    roles,
+    setRoles,
+    setUser,
+    user,
+  };
+
+  return <Context.Provider value={contextValue}>{children}</Context.Provider>;
 };

@@ -48,6 +48,25 @@ const updateRole = async (req, res) => {
   });
 };
 
+const updateStatus = async (req, res) => {
+  const { id } = req.params;
+  const role = await Role.findById(id);
+  const { timeline } = role;
+  const updatedStatus = {
+    status: req.body.status,
+    when: new Date(),
+  };
+  await Role.findByIdAndUpdate(id, { timeline: [...timeline, updatedStatus] }, { new: true }, (error, updatedRole) => {
+    if (error) {
+      return res.status(500).json({ error: error.message });
+    }
+    if (!role) {
+      return res.status(404).json({ message: "Cannot update status" });
+    }
+    res.status(200).json(updatedRole);
+  });
+};
+
 const deleteRole = async (req, res) => {
   try {
     const { id } = req.params;
@@ -66,4 +85,5 @@ module.exports = {
   createRole,
   updateRole,
   deleteRole,
+  updateStatus,
 };
