@@ -12,6 +12,9 @@
     "mern",
     "mongoose"
   ],
+  "engines": {
+    "node": ">=14"
+  },
   "author": "Soleil Solomon <mounlasolomon@gmail.com> and Zulay Scottborgh <zulay@lifefromabackapack.com>",
   "license": "ISC",
   "dependencies": {
