@@ -9,6 +9,8 @@ const roleSchema = new Schema(
     },
     position: { type: String, required: true },
     company: { type: String, required: true },
+    location: { type: String, required: true },
+    remote: { type: Boolean, default: false },
     minSalary: Number,
     maxSalary: Number,
     timeline: [
