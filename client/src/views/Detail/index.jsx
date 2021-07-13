@@ -5,14 +5,16 @@ import {
   CardHeader,
   Select,
   Text,
+  Button,
 } from 'grommet';
+import { Map, Location, Clock, Link, Organization } from 'grommet-icons';
 import { useContext } from 'react';
 import { Context } from 'context';
-import Card from 'components/Card';
 
-const Detail = () => {
-  const { user, roles } = useContext(Context);
-  const { _id, company, position, timeline, updatedAt } = roles;
+const Detail = ({ role }) => {
+  const { user, roles, fetchRoles } = useContext(Context);
+  // const { _id, company, position, timeline, updatedAt } = role;
+
   if (!user) {
     return null;
   }
@@ -25,25 +27,45 @@ const Detail = () => {
       margin="small"
       flex={false}
     >
-      <CardHeader pad="small" direction="column" align="start" width="small">
+      <CardHeader
+        pad="small"
+        direction="column"
+        align="start"
+        width="small"
+        justify="center"
+      >
         <Text>
-          <strong>{position}</strong>
+          <strong>position{/* {position} */}</strong>
           <br />
-          {company}
+          <Organization></Organization> company
+          {/* {company} */}
         </Text>
       </CardHeader>
       <CardBody pad="small">
         <Text>
-          <em>{new Date(updatedAt).toLocaleString()}</em>
+          <Clock></Clock>
+          {/* <em>{new Date(updatedAt).toLocaleString()}</em> */} updatedAt
         </Text>
+        <Text>
+          <Link></Link>Link
+        </Text>
+        <hr />
+        <Text>
+          <Map></Map>
+          <Location></Location>Location:
+        </Text>
+        <Text></Text>
       </CardBody>
-      <CardFooter pad="small" direction="column">
+
+      <CardFooter pad="small" direction="row">
+        <Text>Current Status</Text>
+
         {/* <Select
-          options={statuses}
-          value={currentStatus?.status}
-          fill="horizontal"
-          onChange={handleChange}
-        /> */}
+            // options={statuses}
+            // value={currentStatus?.status}
+            // fill="horizontal"
+            // onChange={handleChange}
+          /> */}
       </CardFooter>
     </CardContainer>
   );
