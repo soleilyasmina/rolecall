@@ -1,4 +1,4 @@
-const { compareSync } = require('bcrypt');
+const { compareSync } = require('bcryptjs');
 const { sign, verify } = require('jsonwebtoken');
 const User = require('../models/user');
 
