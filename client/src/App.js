@@ -1,25 +1,27 @@
-import { Route } from 'react-router-dom';
-import { Main } from 'grommet';
-import Nav from 'components/Nav';
+import { Route } from "react-router-dom";
+import { Box, Main } from "grommet";
+import Nav from "components/Nav";
 import Create from "views/Create";
-import Login from 'views/Login';
-import Register from 'views/Register';
+import Login from "views/Login";
+import Register from "views/Register";
 
 function App() {
   return (
     <Main pad="small">
       <Nav />
-      <Route exact path="/"></Route>
-      <Route path="/dashboard"></Route>
-      <Route path="/new">
-        <Create />
-      </Route>
-      <Route path="/login">
-        <Login />
-      </Route>
-      <Route path="/register">
-        <Register />
-      </Route>
+      <Box width="large" margin="auto">
+        <Route exact path="/"></Route>
+        <Route path="/dashboard"></Route>
+        <Route path="/new">
+          <Create />
+        </Route>
+        <Route path="/login">
+          <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
+        </Route>
+      </Box>
     </Main>
   );
 }
