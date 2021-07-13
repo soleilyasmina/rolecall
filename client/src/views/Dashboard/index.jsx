@@ -1,15 +1,22 @@
+import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Context } from 'context';
+import { getRoles } from 'services';
+import { newestFound } from 'utils';
 import Card from 'components/Card';
 import Section from 'components/Section';
-import { getRoles } from 'services';
 import { Box } from 'grommet';
 
 const Dashboard = ({ role }) => {
-  //getAllRoles
+  const { roles, user } = useContext(Context);
+  console.log(roles);
+  console.log(user);
 
-  const getAllRoles = () => {
-    await getRoles();
-  };
-  //map through roles to display cards
+  // login / verify -- conditional to guard or guard routes to prevent non-users from viewing pages
+  // pull user id
+  // access user profile
+  // filter through to sort roles for respective space
+  // map through roles from user profile to display cards
   //
   return (
     <>
