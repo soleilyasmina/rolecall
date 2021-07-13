@@ -12,8 +12,8 @@ const Edit = () => {
   const role = roles.find((role) => role._id === params.id);
 
   const handleSubmit = async (form) => {
-    const newRole = await updateRole(form);
-    setRoles((curr) => curr.map((role) => role.id === params.id ? newRole : role));
+    const newRole = await updateRole(role._id, form);
+    setRoles((curr) => curr.map((role) => role._id === params.id ? newRole : role));
     history.push("/dashboard");
   };
 
