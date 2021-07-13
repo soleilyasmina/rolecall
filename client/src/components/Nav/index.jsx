@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Header, Heading, Menu } from "grommet";
-import { Menu as MenuIcon } from "grommet-icons";
 import { Context } from "context";
 
 const Nav = () => {
@@ -14,34 +13,34 @@ const Nav = () => {
         <Heading>RoleCall</Heading>
       </Link>
       <Menu
+        dropAlign={{"top": "top", "right": "right"}}
+        justifyContent="end"
         items={
           user
             ? [
-                {
-                  label: "Dashboard",
-                  onClick: () => history.push("/dashboard"),
-                },
-                {
-                  label: "Add Role",
-                  onClick: () => history.push("/dashboard"),
-                },
-                {
-                  label: "Search",
-                  onClick: () => history.push("/search"),
-                },
-                {
-                  label: "Logout",
-                  onClick: () => history.push("/"),
-                },
-              ]
+              {
+                label: "Dashboard",
+                onClick: () => history.push("/dashboard"),
+              },
+              {
+                label: "Add Role",
+                onClick: () => history.push("/new"),
+              },
+              {
+                label: "Search",
+                onClick: () => history.push("/search"),
+              },
+              {
+                label: "Logout",
+                onClick: () => history.push("/"),
+              },
+            ]
             : [
-                { label: "Login", onClick: () => history.push("/login") },
-                { label: "Register", onClick: () => history.push("/register") },
-              ]
+              { label: "Login", onClick: () => history.push("/login") },
+              { label: "Register", onClick: () => history.push("/register") },
+            ]
         }
-      >
-      <MenuIcon />
-      </Menu>
+      />
     </Header>
   );
 };
