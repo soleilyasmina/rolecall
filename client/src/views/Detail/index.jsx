@@ -20,6 +20,10 @@ const Detail = ({ user }) => {
   const role = roles.find((role) => role._id === params.id);
   console.log(role);
 
+  if (!roles) {
+    return null;
+  }
+
   const currentStatus = lastInArray(role.timeline);
 
   return (
@@ -46,16 +50,18 @@ const Detail = ({ user }) => {
       </CardHeader>
       <CardBody pad="small">
         <Text>
-          <Clock margin="medium"></Clock>
+          <Clock margin="medium" />
           <em>{new Date(role.updatedAt).toLocaleString()}</em>
         </Text>
         <Text>
-          <Link></Link>Link
+          <Link />
+          Link
         </Text>
         <hr />
         <Text>
-          <Map></Map>
-          <Location></Location>Location:
+          <Map />
+          <Location />
+          Location:
         </Text>
         <Text></Text>
       </CardBody>
@@ -64,6 +70,9 @@ const Detail = ({ user }) => {
         <Text>Current Status</Text>
 
         <Select
+          style={{
+            color: getColorFromStatus(currentStatus.status),
+          }}
           options={statuses}
           value={currentStatus?.status}
           fill="horizontal"
