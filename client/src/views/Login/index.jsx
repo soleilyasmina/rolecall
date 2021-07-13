@@ -37,6 +37,7 @@ const Login = () => {
           name="username-label"
           htmlFor="username"
           label={form.username && 'username'}
+          required
         >
           <TextInput
             type="text"
@@ -50,6 +51,7 @@ const Login = () => {
           name="password-label"
           htmlFor="password"
           label={form.password && 'password'}
+          required
         >
           <TextInput
             type="password"
@@ -59,7 +61,7 @@ const Login = () => {
             onChange={handleChange}
           />
         </FormField>
-        <Button pad="small" label="Submit"></Button>
+        <Button type="submit" pad="small" label="Login"></Button>
       </Form>
     </>
   );

@@ -29,7 +29,7 @@ export const verify = async () => {
     return;
   }
   setAuthHeader(token);
-  const resp = await api.get("/");
+  const resp = await api.get("/api/verify");
   return resp.data.user;
 };
 
@@ -37,3 +37,8 @@ export const logout = async () => {
   clearToken();
   setAuthHeader(null);
 };
+
+export const createRole = async (role) => {
+  const resp = await api.post("/api/roles", role);
+  return resp.data;
+}
