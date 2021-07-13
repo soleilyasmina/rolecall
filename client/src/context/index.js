@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { verify } from "services";
+import { getRoles, verify } from "services";
 import { getToken } from "utils";
 
 export const Context = createContext();
@@ -21,6 +21,7 @@ export const Provider = ({ children }) => {
     if (token) {
       (async () => {
         setUser(await verify(token));
+        setRoles(await getRoles());
       })()
     } 
   }, [])
