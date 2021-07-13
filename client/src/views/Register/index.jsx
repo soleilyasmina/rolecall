@@ -44,64 +44,53 @@ const Register = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        value={form}
+        onChange={(newValue) => setForm(newValue)}
+        onSubmit={handleSubmit}
+      >
         <FormField
           name="email-label"
           htmlFor="email"
           label={form.email && 'email'}
-          required
+          required={!form.email}
         >
-          <TextInput
-            type="email"
-            name="email"
-            placeholder="email"
-            value={form.email}
-            onChange={handleChange}
-          />
+          <TextInput type="email" name="email" placeholder="email" />
         </FormField>
         <FormField
           name="username-label"
           htmlFor="username"
           label={form.username && 'username'}
-          required
+          required={!form.username}
         >
-          <TextInput
-            type="text"
-            name="username"
-            placeholder="username"
-            value={form.username}
-            onChange={handleChange}
-          />
+          <TextInput type="text" name="username" placeholder="username" />
         </FormField>
         <FormField
           name="password-label"
           htmlFor="password"
           label={form.password && 'password'}
-          required
+          required={!form.password}
         >
-          <TextInput
-            type="password"
-            name="password"
-            placeholder="password"
-            value={form.password}
-            onChange={handleChange}
-          />
+          <TextInput type="password" name="password" placeholder="password" />
         </FormField>
         <FormField
           name="confirm-password-label"
           htmlFor="confirm-password"
           label={form.confirmPassword && 'confirm password'}
-          required
+          required={!form.confirmPassword}
         >
           <TextInput
             type="password"
             name="confirmPassword"
             placeholder="confirm password"
-            value={form.confirmPassword}
-            onChange={handleChange}
           />
         </FormField>
-        <Button type="submit" pad="small" label="Register" disabled={!validPassword}></Button>
+        <Button
+          type="submit"
+          pad="small"
+          label="Register"
+          disabled={!validPassword}
+        ></Button>
       </Form>
     </>
   );
