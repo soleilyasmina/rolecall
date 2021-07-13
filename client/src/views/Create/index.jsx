@@ -1,18 +1,18 @@
-import { useContext, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Form, FormField, Select, TextInput, Button } from "grommet";
-import { Context } from "context";
-import { createRole } from "services";
-import { statuses } from "utils";
+import { useContext, useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import { Form, FormField, Select, TextInput, Button } from 'grommet';
+import { Context } from 'context';
+import { createRole } from 'services';
+import { statuses } from 'utils';
 
 const Create = () => {
   const { setRoles } = useContext(Context);
   const history = useHistory();
 
   const [form, setForm] = useState({
-    position: "",
-    company: "",
-    timeline: ""
+    position: '',
+    company: '',
+    timeline: '',
   });
 
   const handleChange = (e) => {
@@ -24,68 +24,56 @@ const Create = () => {
   };
 
   const handleSubmit = async () => {
-    const roleToCreate = { 
-      ...form, 
-      timeline: [{ status: form.timeline, when: new Date() }] 
+    const roleToCreate = {
+      ...form,
+      timeline: [{ status: form.timeline, when: new Date() }],
     };
     const newRole = await createRole(roleToCreate);
     setRoles((curr) => [...curr, newRole]);
-    history.push("/dashboard");
+    history.push('/dashboard');
   };
 
   return (
     <>
-      <Form value={form} onSubmit={handleSubmit}>
+      <Form
+        value={form}
+        onChange={(newValue) => setForm(newValue)}
+        onSubmit={handleSubmit}
+      >
         <FormField
           name="position-label"
           htmlFor="position"
-          label={form.position && "position"}
+          label={form.position && 'position'}
+          required={!form.position}
         >
-          <TextInput
-            type="text"
-            name="position"
-            placeholder="position"
-            value={form.position}
-            onChange={handleChange}
-          />
+          <TextInput type="text" name="position" placeholder="position" />
         </FormField>
         <FormField
           name="company-label"
           htmlFor="company"
-          label={form.company && "company"}
+          label={form.company && 'company'}
+          required={!form.company}
         >
-          <TextInput
-            type="text"
-            name="company"
-            placeholder="company"
-            value={form.company}
-            onChange={handleChange}
-          />
+          <TextInput type="text" name="company" placeholder="company" />
         </FormField>
         <FormField
           name="link-label"
           htmlFor="link"
-          label={form.link && "link"}
+          label={form.link && 'link'}
+          required={!form.link}
         >
-          <TextInput
-            type="text"
-            name="link"
-            placeholder="link"
-            value={form.link}
-            onChange={handleChange}
-          />
+          <TextInput type="url" name="link" placeholder="link" />
         </FormField>
         <FormField
           name="timeline-label"
           htmlFor="timeline"
-          label={form.timeline && "status"}
+          label={form.timeline && 'status'}
+          required={!form.timeline}
         >
           <Select
             name="timeline"
             placeholder="current status"
-            value={form.timeline}
             options={statuses}
-            onChange={({ option }) => setForm({ ...form, timeline: option })}
           />
         </FormField>
         <Button type="submit" pad="small" label="Submit"></Button>

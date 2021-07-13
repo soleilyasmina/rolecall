@@ -32,34 +32,26 @@ const Login = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
+      <Form
+        value={form}
+        onChange={(newValue) => setForm(newValue)}
+        onSubmit={handleSubmit}
+      >
         <FormField
           name="username-label"
           htmlFor="username"
           label={form.username && 'username'}
-          required
+          required={!form.username}
         >
-          <TextInput
-            type="text"
-            name="username"
-            placeholder="username"
-            value={form.username}
-            onChange={handleChange}
-          />
+          <TextInput type="text" name="username" placeholder="username" />
         </FormField>
         <FormField
           name="password-label"
           htmlFor="password"
           label={form.password && 'password'}
-          required
+          required={!form.password}
         >
-          <TextInput
-            type="password"
-            name="password"
-            placeholder="password"
-            value={form.password}
-            onChange={handleChange}
-          />
+          <TextInput type="password" name="password" placeholder="password" />
         </FormField>
         <Button type="submit" pad="small" label="Login"></Button>
       </Form>
