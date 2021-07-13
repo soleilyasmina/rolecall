@@ -3,7 +3,7 @@ import { getToken } from "utils";
 
 const baseURL =
   process.env.NODE_ENV === "production"
-    ? process.env.BASE_URL
+    ? process.env.REACT_APP_BASE_URL
     : "http://localhost:3001";
 
 const token = getToken();
