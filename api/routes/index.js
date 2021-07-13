@@ -1,6 +1,6 @@
-const { Router } = require('express');
-const userRouter = require('./user');
-const roleRouter = require('./role');
+const { Router } = require("express");
+const userRouter = require("./user");
+const roleRouter = require("./role");
 
 const apiRouter = new Router();
 apiRouter.use(userRouter);
