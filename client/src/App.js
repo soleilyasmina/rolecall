@@ -4,6 +4,7 @@ import { Box, Main } from "grommet";
 import Nav from "components/Nav";
 import Create from "views/Create";
 import Dashboard from 'views/Dashboard';
+import Edit from "views/Edit";
 import Login from "views/Login";
 import Register from "views/Register";
 
@@ -18,6 +19,9 @@ function App() {
         </Route>
         <Route path="/new">
           <Create />
+        </Route>
+        <Route path="/edit/:id">
+          <Edit /> 
         </Route>
         <Route path="/login">
           <Login />

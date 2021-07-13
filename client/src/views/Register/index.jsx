@@ -25,14 +25,6 @@ const Register = () => {
     }
   }, [form.password, form.confirmPassword]);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const user = await register(form);
