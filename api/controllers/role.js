@@ -1,8 +1,8 @@
-const Role = require('../models/role');
+const Role = require("../models/role");
 
 const getRoles = async (req, res) => {
   try {
-    const roles = await Role.find();
+    const roles = await Role.find({ user_id: res.locals.user.id });
     res.json(roles);
   } catch (e) {
     res.status(500).json({ error: e.message });
@@ -42,7 +42,7 @@ const updateRole = async (req, res) => {
       return res.status(500).json({ error: error.message });
     }
     if (!role) {
-      return res.status(404).json({ message: 'Cannot find this role' });
+      return res.status(404).json({ message: "Cannot find this role" });
     }
     res.status(200).json(role);
   });
@@ -53,9 +53,9 @@ const deleteRole = async (req, res) => {
     const { id } = req.params;
     const deleted = await Role.findByIdAndDelete(id);
     if (deleted) {
-      return res.status(200).send('Role has been deleted.');
+      return res.status(200).send("Role has been deleted.");
     }
-    throw new Error('Role not found');
+    throw new Error("Role not found");
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
