@@ -49,6 +49,7 @@ const Register = () => {
           name="email-label"
           htmlFor="email"
           label={form.email && 'email'}
+          required
         >
           <TextInput
             type="email"
@@ -62,6 +63,7 @@ const Register = () => {
           name="username-label"
           htmlFor="username"
           label={form.username && 'username'}
+          required
         >
           <TextInput
             type="text"
@@ -75,6 +77,7 @@ const Register = () => {
           name="password-label"
           htmlFor="password"
           label={form.password && 'password'}
+          required
         >
           <TextInput
             type="password"
@@ -88,6 +91,7 @@ const Register = () => {
           name="confirm-password-label"
           htmlFor="confirm-password"
           label={form.confirmPassword && 'confirm password'}
+          required
         >
           <TextInput
             type="password"
@@ -97,7 +101,7 @@ const Register = () => {
             onChange={handleChange}
           />
         </FormField>
-        <Button pad="small" label="Submit" disabled={!validPassword}></Button>
+        <Button type="submit" pad="small" label="Register" disabled={!validPassword}></Button>
       </Form>
     </>
   );
