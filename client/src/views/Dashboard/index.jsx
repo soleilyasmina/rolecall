@@ -14,21 +14,21 @@ const Dashboard = ({ role }) => {
           border={{ color: 'accent-2', size: 'medium' }}
           pad="medium"
           margin="small"
-          overflow="scroll"
+          // overflow="scroll"
         ></Box>
         <Box
           direction="row"
           border={{ color: 'accent-4', size: 'medium' }}
           pad="medium"
           margin="small"
-          overflow="scroll"
+          // overflow="scroll"
         ></Box>
         <Box
           direction="row"
           border={{ color: 'accent-3', size: 'medium' }}
           pad="medium"
           margin="small"
-          overflow="scroll"
+          // overflow="scroll"
         ></Box>
       </Box>
     </>

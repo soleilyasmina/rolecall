@@ -1,16 +1,19 @@
 import { Route } from 'react-router-dom';
 import { Main } from 'grommet';
 import Nav from 'components/Nav';
-import Create from "views/Create";
+import Create from 'views/Create';
 import Login from 'views/Login';
 import Register from 'views/Register';
+import Dashboard from 'views/Dashboard';
 
 function App() {
   return (
     <Main pad="small">
       <Nav />
       <Route exact path="/"></Route>
-      <Route path="/dashboard"></Route>
+      <Route path="/dashboard">
+        <Dashboard />
+      </Route>
       <Route path="/new">
         <Create />
       </Route>
