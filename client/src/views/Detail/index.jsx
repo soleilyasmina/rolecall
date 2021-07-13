@@ -5,7 +5,6 @@ import {
   CardHeader,
   Select,
   Text,
-  Button,
 } from 'grommet';
 import { Map, Location, Clock, Link, Organization } from 'grommet-icons';
 import { useContext } from 'react';
