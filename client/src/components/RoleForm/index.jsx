@@ -1,4 +1,4 @@
-import { useContext, useMemo, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import { Button, Form, Tab, Tabs }from "grommet";
 import EssentialForm from "./EssentialForm";
 import LocationForm from "./LocationForm";
@@ -23,6 +23,10 @@ const RoleForm = ({ handleSubmit, initialForm = null }) => {
     notes: "",
     referral: "",
   });
+
+  useEffect(() => {
+    setForm(initialForm);
+  }, [initialForm]);
 
   const suggestions = useMemo(() => {
     const roleObj = roles.reduce((suggestions, role) => {
