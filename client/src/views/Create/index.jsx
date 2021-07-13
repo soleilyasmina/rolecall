@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useMemo, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { Form, FormField, Select, TextInput, Button } from 'grommet';
 import { Context } from 'context';
@@ -6,7 +6,7 @@ import { createRole } from 'services';
 import { statuses } from 'utils';
 
 const Create = () => {
-  const { setRoles } = useContext(Context);
+  const { roles, setRoles } = useContext(Context);
   const history = useHistory();
 
   const [form, setForm] = useState({
@@ -15,13 +15,21 @@ const Create = () => {
     timeline: '',
   });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-  };
+  const suggestions = useMemo(() => {
+    return roles.reduce((suggestions, role) => {
+      const entries = Object.entries(role);
+      entries.forEach(([key, value]) => {
+        if (!["createdAt", "updatedAt", "user_id", "notes",
+          "__v", "_id", "timeline"].includes(key)) {
+          if (!suggestions[key]) {
+            suggestions[key] = [];
+          }
+          suggestions[key].push(value);
+        }
+      });
+      return suggestions;
+    }, {})
+  }, [roles]);
 
   const handleSubmit = async () => {
     const roleToCreate = {
@@ -46,7 +54,7 @@ const Create = () => {
           label={form.position && 'position'}
           required={!form.position}
         >
-          <TextInput type="text" name="position" placeholder="position" />
+          <TextInput type="text" name="position" placeholder="position" suggestions={suggestions.position} />
         </FormField>
         <FormField
           name="company-label"
@@ -54,7 +62,7 @@ const Create = () => {
           label={form.company && 'company'}
           required={!form.company}
         >
-          <TextInput type="text" name="company" placeholder="company" />
+          <TextInput type="text" name="company" placeholder="company" suggestions={suggestions.company} />
         </FormField>
         <FormField
           name="link-label"
