@@ -9,15 +9,18 @@ import {
 } from 'grommet';
 import { Map, Location, Clock, Link, Organization } from 'grommet-icons';
 import { useContext } from 'react';
+import { useParams } from 'react-router-dom';
 import { Context } from 'context';
+import { getColorFromStatus, lastInArray, statuses } from 'utils';
 
-const Detail = ({ role }) => {
-  const { user, roles, fetchRoles } = useContext(Context);
-  // const { _id, company, position, timeline, updatedAt } = role;
+const Detail = ({ user }) => {
+  const { roles } = useContext(Context);
+  const params = useParams();
+  console.log(roles);
+  const role = roles.find((role) => role._id === params.id);
+  console.log(role);
 
-  if (!user) {
-    return null;
-  }
+  const currentStatus = lastInArray(role.timeline);
 
   return (
     <CardContainer
@@ -35,16 +38,16 @@ const Detail = ({ role }) => {
         justify="center"
       >
         <Text>
-          <strong>position{/* {position} */}</strong>
+          <strong>{role.position}</strong>
           <br />
-          <Organization></Organization> company
-          {/* {company} */}
+          <Organization></Organization>
+          {role.company}
         </Text>
       </CardHeader>
       <CardBody pad="small">
         <Text>
-          <Clock></Clock>
-          {/* <em>{new Date(updatedAt).toLocaleString()}</em> */} updatedAt
+          <Clock margin="medium"></Clock>
+          <em>{new Date(role.updatedAt).toLocaleString()}</em>
         </Text>
         <Text>
           <Link></Link>Link
@@ -60,12 +63,11 @@ const Detail = ({ role }) => {
       <CardFooter pad="small" direction="row">
         <Text>Current Status</Text>
 
-        {/* <Select
-            // options={statuses}
-            // value={currentStatus?.status}
-            // fill="horizontal"
-            // onChange={handleChange}
-          /> */}
+        <Select
+          options={statuses}
+          value={currentStatus?.status}
+          fill="horizontal"
+        />
       </CardFooter>
     </CardContainer>
   );
