@@ -13,22 +13,18 @@ import { useParams } from 'react-router-dom';
 import { Context } from 'context';
 import { getColorFromStatus, lastInArray, statuses } from 'utils';
 
-const Detail = ({ user }) => {
+const Detail = () => {
   const { roles } = useContext(Context);
   const params = useParams();
-  console.log(roles);
   const role = roles.find((role) => role._id === params.id);
-  console.log(role);
-
-  if (!roles) {
+  if (!role) {
     return null;
   }
-
   const currentStatus = lastInArray(role.timeline);
 
   return (
     <CardContainer
-      height=":wcsmall"
+      // height="small"
       width="1/4"
       justify="between"
       margin="small"
