@@ -1,11 +1,11 @@
-import { Grommet } from "grommet";
+import { Grommet } from 'grommet';
 
 const theme = {
   global: {
     font: {
-      family: "Montserrat"
-    }
-  }
+      family: 'Montserrat',
+    },
+  },
 };
 
 const ThemeProvider = ({ children }) => (
