@@ -32,7 +32,7 @@ const Card = ({ role }) => {
         </Text>
         <Select options={statuses} value={currentStatus?.status} fill="horizontal" onChange={handleChange}/>
         <Box direction="row" background="light-2" fill pad="xxsmall" justify="around">
-          <Link to={`/detail/${_id}`}>
+          <Link to={`/role/${_id}`}>
             <Button icon={<More color="plain" />} hoverIndicator />
           </Link>
           <Link to={`/edit/${_id}`}>
