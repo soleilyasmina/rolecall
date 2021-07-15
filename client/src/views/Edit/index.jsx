@@ -3,6 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 import RoleForm from "components/RoleForm";
 import { Context } from "context";
 import { updateRole } from "services";
+import { lastInArray } from "utils";
 
 const Edit = () => {
   const { roles, setRoles } = useContext(Context);
@@ -18,7 +19,7 @@ const Edit = () => {
   };
 
   return (
-    <RoleForm handleSubmit={handleSubmit} initialForm={role} /> 
+    <RoleForm handleSubmit={handleSubmit} initialForm={{ ...role, timeline: lastInArray(role.timeline).status }} /> 
   )
 };
 
