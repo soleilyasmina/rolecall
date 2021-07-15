@@ -13,7 +13,7 @@ const Card = ({ role }) => {
   const currentStatus = lastInArray(timeline);
 
   const handleChange = async (e) => {
-    await updateRole(_id, { status: e.target.value });
+    await updateRole(_id, { timeline: e.target.value });
     await fetchRoles();
   }
 

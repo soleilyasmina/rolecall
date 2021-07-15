@@ -39,22 +39,23 @@ const updateRole = async (req, res) => {
   const { id } = req.params;
   const role = await Role.findById(id);
   const { timeline } = role;
+  const { timeline: status, ...reqBody } = req.body;
   const updatedStatus = {
-    status: req.body.status,
+    status,
     when: new Date(),
   };
   const updates = {
-    ...req.body,
-    timeline: req.body.status === timeline[timeline.length - 1].status
+    ...reqBody,
+    timeline: status === timeline[timeline.length - 1].status
       ? timeline
       : [...timeline, updatedStatus],
   };
-  await Role.findByIdAndUpdate(id, { updates }, { new: true }, (error, updatedRole) => {
+  await Role.findByIdAndUpdate(id, updates, { new: true }, (error, updatedRole) => {
     if (error) {
       return res.status(500).json({ error: error.message });
     }
     if (!role) {
-      return res.status(404).json({ message: "Cannot update status" });
+      return res.status(404).json({ message: "Cannot update role" });
     }
     res.status(200).json(updatedRole);
   });
