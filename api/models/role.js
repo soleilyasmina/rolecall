@@ -9,7 +9,7 @@ const roleSchema = new Schema(
     },
     position: { type: String, required: true },
     company: { type: String, required: true },
-    location: { type: String, required: true },
+    location: { type: String },
     remote: { type: Boolean, default: false },
     minSalary: Number,
     maxSalary: Number,
@@ -55,7 +55,7 @@ const roleSchema = new Schema(
         message: 'Email validation failed!',
       },
     },
-    referral: { type: Boolean, default: false },
+    referral: { type: Boolean },
   },
   {
     timestamps: true,
