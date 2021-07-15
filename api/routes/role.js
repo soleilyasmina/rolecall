@@ -6,7 +6,6 @@ const roleRouter = new Router();
 
 roleRouter.post("/roles", restrict, roleController.createRole);
 roleRouter.put("/roles/:id", restrict, roleController.updateRole);
-roleRouter.put("/roles/:id/status", restrict, roleController.updateStatus);
 roleRouter.delete("/roles/:id", restrict, roleController.deleteRole);
 roleRouter.get("/roles", restrict, roleController.getRoles);
 

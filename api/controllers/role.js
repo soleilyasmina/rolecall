@@ -37,26 +37,19 @@ const createRole = async (req, res) => {
 
 const updateRole = async (req, res) => {
   const { id } = req.params;
-  await Role.findByIdAndUpdate(id, req.body, { new: true }, (error, role) => {
-    if (error) {
-      return res.status(500).json({ error: error.message });
-    }
-    if (!role) {
-      return res.status(404).json({ message: "Cannot find this role" });
-    }
-    res.status(200).json(role);
-  });
-};
-
-const updateStatus = async (req, res) => {
-  const { id } = req.params;
   const role = await Role.findById(id);
   const { timeline } = role;
   const updatedStatus = {
     status: req.body.status,
     when: new Date(),
   };
-  await Role.findByIdAndUpdate(id, { timeline: [...timeline, updatedStatus] }, { new: true }, (error, updatedRole) => {
+  const updates = {
+    ...req.body,
+    timeline: req.body.status === timeline[timeline.length - 1].status
+      ? timeline
+      : [...timeline, updatedStatus],
+  };
+  await Role.findByIdAndUpdate(id, { updates }, { new: true }, (error, updatedRole) => {
     if (error) {
       return res.status(500).json({ error: error.message });
     }
@@ -85,5 +78,4 @@ module.exports = {
   createRole,
   updateRole,
   deleteRole,
-  updateStatus,
 };

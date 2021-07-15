@@ -10,11 +10,6 @@ export const getRoles = async () => {
   return resp.data;
 };
 
-export const updateStatus = async (id, status) => {
-  const resp = await api.put(`/api/roles/${id}/status`, { status });
-  return resp.data;
-};
-
 export const updateRole = async (id, role) => {
   const resp = await api.put(`/api/roles/${id}`, role);
   return resp.data;

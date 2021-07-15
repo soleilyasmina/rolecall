@@ -3,7 +3,7 @@ import { Edit, More } from "grommet-icons";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "context";
-import { updateStatus } from "services";
+import { updateRole } from "services";
 import { getColorFromStatus, lastInArray, statuses } from "utils";
 
 const Card = ({ role }) => {
@@ -13,7 +13,7 @@ const Card = ({ role }) => {
   const currentStatus = lastInArray(timeline);
 
   const handleChange = async (e) => {
-    await updateStatus(_id, e.target.value);
+    await updateRole(_id, { status: e.target.value });
     await fetchRoles();
   }
 
