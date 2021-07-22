@@ -7,13 +7,13 @@ const theme = {
     },
     icons: {
       size: {
-        small: '20px',
+        small: '12px',
         medium: '24px',
         large: '48px',
         xlarge: '96px',
       },
       extend: undefined,
-      margin: {
+      gap: {
         small: '10px',
         medium: '20px',
         large: '36px',

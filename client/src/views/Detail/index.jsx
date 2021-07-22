@@ -22,13 +22,7 @@ const Detail = () => {
   const currentStatus = lastInArray(role.timeline);
 
   return (
-    <CardContainer
-      // height="small"
-      width="1/4"
-      justify="between"
-      margin="small"
-      flex={false}
-    >
+    <CardContainer width="1/4" justify="between" margin="small" flex={false}>
       <CardHeader
         pad="small"
         direction="column"
@@ -36,32 +30,31 @@ const Detail = () => {
         width="small"
         justify="center"
       >
-        <Text>
+        <Text margin="xsmall">
           <strong>{role.position}</strong>
-          <br />
-          <Organization></Organization>
-          {role.company}
         </Text>
       </CardHeader>
       <CardBody pad="small">
-        <Text>
-          <Clock margin="medium" />
-          <em>{new Date(role.updatedAt).toLocaleString()}</em>
+        <Text margin="xsmall">
+          <Organization />
+          {role.company}
         </Text>
-        <Text>
+
+        <Text margin="xsmall">
           <Link />
-          Link
+          <a href={role.link}>Role</a>
         </Text>
-        <hr />
-        <Text>
-          <Map />
+        <Text margin="xsmall">
           <Location />
           Location:
         </Text>
-        <Text></Text>
+        <Text margin="xsmall">
+          <Clock />
+          <em>{new Date(role.updatedAt).toLocaleString()}</em>
+        </Text>
       </CardBody>
 
-      <CardFooter pad="small" direction="row">
+      <CardFooter margin="medium" direction="row">
         <Text>Current Status</Text>
 
         <Select
