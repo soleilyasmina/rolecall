@@ -5,6 +5,8 @@ import {
   CardHeader,
   Select,
   Text,
+  Anchor,
+  Paragraph,
 } from 'grommet';
 import { Map, Location, Clock, Link, Organization } from 'grommet-icons';
 import { useContext } from 'react';
@@ -42,11 +44,11 @@ const Detail = () => {
 
         <Text margin="xsmall">
           <Link />
-          <a href={role.link}>Role</a>
+          <Anchor href={role.link} label="Role"></Anchor>
         </Text>
         <Text margin="xsmall">
           <Location />
-          Location:
+          Location: {role.location}
         </Text>
         <Text margin="xsmall">
           <Clock />
