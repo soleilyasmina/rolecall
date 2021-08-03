@@ -1,16 +1,26 @@
-export const recent = (items) => {
+export const newest = (items) => {
   return items.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 };
 
+export const lastUpdated = (items) => {
+  return items.sort((a, b) => new Date(b.updatedAt) - new Date(a.updatedAt));
+};
+
 export const newestFound = (items) => {
-  return recent(
+  return newest(
     items.filter((item) => lastInArray(item.timeline).status === statuses[0])
   );
 };
 
 export const newestArchived = (items) => {
-  return recent(
+  return newest(
     items.filter((item) => lastInArray(item.timeline).status === statuses[6])
+  );
+};
+
+export const newestApplied = (items) => {
+  return newest(
+    items.filter((item) => lastInArray(item.timeline).status === statuses[1])
   );
 };
 
@@ -23,10 +33,12 @@ export const stale = (items) => {
 // name of profile section and relevant filter
 const filters = {
   "newest-found": newestFound,
-  "recent": recent,
+  newest: newest,
   "newest-archived": newestArchived,
-  "stale": stale 
-}
+  stale: stale,
+  "last-updated": lastUpdated,
+  "newest-applied": newestApplied,
+};
 
 // all names of profile sections
 export const profiles = Object.keys(filters);
@@ -36,7 +48,7 @@ export const getRolesFromProfiles = (user, roles) => {
   const { profile } = user;
   // for each of these sections, apply the relevant filter and assign a list of roles for that section
   return profile.map((type) => filters[type](roles));
-}
+};
 
 export const statuses = [
   "Found",
