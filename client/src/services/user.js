@@ -37,3 +37,10 @@ export const logout = async () => {
   clearToken();
   setAuthHeader(null);
 };
+
+export const updateProfile = async (action, option) => {
+  // action can be add / remove
+  // option is a type of filter
+  const resp = await api.put("/api/profile", { action, option });
+  return resp.data.user;
+}

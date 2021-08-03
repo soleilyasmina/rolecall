@@ -38,7 +38,7 @@ const verify = async (req, res) => {
 
 const updateProfile = async (req, res) => {
   const { action, option } = req.body;
-  const profileOptions = ["newest-found", "recent", "newest-archived", "featured", "newest-applied", "stale"];
+  const profileOptions = ["newest-found", "newest", "newest-archived", "last-updated", "newest-applied", "stale"];
   const query = { username: res.locals.user.username };
   if (!action || !option) {
     res.status(400).json({ error: "Missing parameters!" });
