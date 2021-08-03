@@ -50,10 +50,13 @@ const Detail = () => {
           <Location />
           Location: {role.location}
         </Text>
-        <Text margin="xsmall">
+        <Paragraph margin="xsmall" flex="justify-content">
           <Clock />
-          <em>{new Date(role.updatedAt).toLocaleString()}</em>
-        </Text>
+          <Text>
+            {' '}
+            <em>{new Date(role.updatedAt).toLocaleString()}</em>
+          </Text>
+        </Paragraph>
       </CardBody>
 
       <CardFooter margin="medium" direction="row">
