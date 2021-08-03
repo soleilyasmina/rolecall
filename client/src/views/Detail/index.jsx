@@ -7,8 +7,9 @@ import {
   Text,
   Anchor,
   Paragraph,
+  Heading,
 } from 'grommet';
-import { Map, Location, Clock, Link, Organization } from 'grommet-icons';
+import { Location, Clock, Link, Organization } from 'grommet-icons';
 import { useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { Context } from 'context';
@@ -32,28 +33,36 @@ const Detail = () => {
         width="small"
         justify="center"
       >
-        <Text margin="xsmall">
-          <strong>{role.position}</strong>
-        </Text>
+        <Heading margin="xsmall" level="2">
+          {role.position}
+        </Heading>
       </CardHeader>
       <CardBody pad="small">
-        <Text margin="xsmall">
+        <Paragraph margin="xxsmall">
           <Organization />
-          {role.company}
-        </Text>
+          <Text margin="xsmall">{role.company}</Text>
+        </Paragraph>
 
-        <Text margin="xsmall">
+        <Paragraph margin="xxsmall">
           <Link />
-          <Anchor href={role.link} label="Role"></Anchor>
-        </Text>
-        <Text margin="xsmall">
+          <Text margin="xsmall">
+            <Anchor href={role.link} label="Role"></Anchor>
+          </Text>
+        </Paragraph>
+
+        <Paragraph margin="xxsmall">
           <Location />
-          Location: {role.location}
-        </Text>
-        <Paragraph margin="xsmall" flex="justify-content">
+          <Text margin="xsmall">
+            Location:
+            <Text margin="small">
+              {role.location ? role.location : <em>no location available</em>}
+            </Text>
+          </Text>
+        </Paragraph>
+
+        <Paragraph margin="xxsmall">
           <Clock />
-          <Text>
-            {' '}
+          <Text margin="xsmall">
             <em>{new Date(role.updatedAt).toLocaleString()}</em>
           </Text>
         </Paragraph>
