@@ -15,9 +15,9 @@ const Dashboard = ({ role }) => {
 
   return (
     <Box direction="column" pad="small">
+      <Filter />
       {rolesFromProfiles.map((profileRoles, i) => (
         <div>
-          <Filter />
           <Section
             key={`section-${i}`}
             roles={profileRoles}
