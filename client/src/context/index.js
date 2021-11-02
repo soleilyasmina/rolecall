@@ -1,9 +1,9 @@
-import { createContext, useEffect, useState } from "react";
-import { getRoles, verify } from "services";
-import { getToken } from "utils";
+import { createContext, useEffect, useState } from 'react';
+import { getRoles, verify } from 'services';
+import { getToken } from 'utils';
 
 export const Context = createContext();
-Context.displayName = "RoleCallContext";
+Context.displayName = 'RoleCallContext';
 
 export const Provider = ({ children }) => {
   const [roles, setRoles] = useState([]);
