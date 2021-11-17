@@ -1,20 +1,17 @@
 import { useContext } from 'react';
 import { Context } from 'context';
 import { Box, CheckBox, Heading } from 'grommet';
-import { useState } from 'react';
 
-const Filter = () => {
-  const { roles, user } = useContext(Context);
+const Filter = (props) => {
+  const { user, toggleCheck } = useContext(Context);
+  const { filterType } = props;
   console.log(user);
-  const [checked, setChecked] = useState(false);
-
   return (
     <Box>
       <Box
         border={{ color: 'black', size: 'medium' }}
         direction="column"
         pad="medium"
-        // margin="small"
         overflow="scroll"
       >
         <Heading textAlign="left" level="3">
@@ -25,9 +22,9 @@ const Filter = () => {
             <CheckBox
               pad="small"
               key={`type-${i}`}
-              setChecked={checked}
+              setChecked={toggleCheck}
               label={type}
-              onChange={(e) => setChecked(e.target.value)}
+              onChange={filterType}
             />
           ))}
         </Box>
