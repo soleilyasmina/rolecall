@@ -8,7 +8,6 @@ Context.displayName = 'RoleCallContext';
 export const Provider = ({ children }) => {
   const [roles, setRoles] = useState([]);
   const [user, setUser] = useState(null);
-  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     const token = getToken();
@@ -24,12 +23,7 @@ export const Provider = ({ children }) => {
     setRoles(await getRoles());
   };
 
-  const toggleCheck = (e) => {
-    setChecked(e.target.value);
-  };
-
   const contextValue = {
-    toggleCheck,
     fetchRoles,
     roles,
     setRoles,

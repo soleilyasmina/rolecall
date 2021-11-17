@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from 'context';
 import { getRolesFromProfiles } from 'utils';
 import Section from 'components/Section';
@@ -6,10 +6,15 @@ import Filter from 'components/Filter';
 import { Box } from 'grommet';
 
 const Dashboard = ({ role }) => {
+  const [checked, setChecked] = useState(false);
   const { roles, user, toggleCheck } = useContext(Context);
   if (!user) {
     return null;
   }
+
+  const toggleCheck = (e) => {
+    setChecked(e.target.value);
+  };
 
   const rolesFromProfiles = getRolesFromProfiles(user, roles);
   const filterType = (e) => {
