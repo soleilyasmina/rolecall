@@ -7,7 +7,7 @@ import { Box } from 'grommet';
 
 const Dashboard = ({ role }) => {
   const [checked, setChecked] = useState(false);
-  const { roles, user, toggleCheck } = useContext(Context);
+  const { roles, user } = useContext(Context);
   if (!user) {
     return null;
   }
